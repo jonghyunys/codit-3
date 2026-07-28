@@ -307,7 +307,7 @@ p  { font-size: 1rem;    line-height: 1.5;  color: var(--color-subtext); } /* 16
 
 .feature-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: var(--space-3);
 }
 
@@ -319,6 +319,50 @@ p  { font-size: 1rem;    line-height: 1.5;  color: var(--color-subtext); } /* 16
 }
 
 .feature-card h3 {
+  margin-bottom: var(--space-1);
+}
+
+/* ============================================
+   8-1. 사용 흐름 섹션
+   ============================================ */
+.how-it-works {
+  padding: var(--space-8) 0;
+  background: var(--color-surface);
+}
+
+.how-it-works h2 {
+  text-align: center;
+}
+
+.steps-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  max-width: 720px;
+  margin: var(--space-6) auto 0;
+}
+
+.steps-list li {
+  display: flex;
+  gap: var(--space-3);
+  align-items: flex-start;
+}
+
+.step-number {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: #fff;
+  font-weight: 700;
+  background: linear-gradient(135deg, var(--brand-primary-from), var(--brand-primary-to));
+}
+
+.steps-list h3 {
   margin-bottom: var(--space-1);
 }
 
