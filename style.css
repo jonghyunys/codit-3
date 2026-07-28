@@ -1,0 +1,374 @@
+/* ============================================
+   0. 폰트 불러오기 (Pretendard)
+   ============================================ */
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css');
+
+/* ============================================
+   1. 디자인 토큰 (여기 값만 바꾸면 전체 반영됩니다)
+   ============================================ */
+:root {
+  /* --- Brand: Primary 그라디언트 --- */
+  --brand-primary-from: #7B5CEB;
+  --brand-primary-to: #5BA4EB;
+  --brand-hover-from: #4F46E5;
+  --brand-hover-to: #4390D9;
+  --brand-pressed-from: #4338CA;
+  --brand-pressed-to: #2578C8;
+
+  /* --- Neutral --- */
+  --color-bg: #FAF8FC;
+  --color-surface: #FFFFFF;
+  --color-text: #111827;
+  --color-subtext: #6B7280;
+  --color-border: #E5E7EB;
+
+  /* --- Feedback --- */
+  --color-success: #22C55E;
+  --color-error: #EB5B5C;
+  --color-warning: #EBA25B;
+  --color-info: #5B5CEB;
+
+  /* --- Typography --- */
+  --font-family: 'Pretendard', -apple-system, sans-serif;
+
+  /* --- Spacing scale (8px 기준) --- */
+  --space-1: 0.5rem;   /* 8px */
+  --space-2: 1rem;     /* 16px */
+  --space-3: 1.5rem;   /* 24px */
+  --space-4: 2rem;     /* 32px */
+  --space-6: 3rem;     /* 48px */
+  --space-8: 4rem;     /* 64px */
+
+  /* --- 모서리 / 그림자 --- */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow-card: 0 4px 16px rgba(17, 24, 39, 0.06);
+}
+
+/* ============================================
+   2. 리셋 + 기본 스타일
+   ============================================ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-family);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.6;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* --- 타이포그래피 스케일 --- */
+h1 { font-size: 2.25rem; line-height: 1.25; font-weight: 700; }   /* 36/44 */
+h2 { font-size: 1.75rem; line-height: 1.3;  font-weight: 600; }   /* 28/36 */
+h3 { font-size: 1.5rem;  line-height: 1.35; font-weight: 600; }   /* 24/32 */
+h4 { font-size: 1.25rem; line-height: 1.4;  font-weight: 600; }   /* 20/30 */
+p  { font-size: 1rem;    line-height: 1.5;  color: var(--color-subtext); } /* 16/24 */
+
+/* --- 접근성: 화면에는 안 보이지만 스크린리더에는 읽히는 요소 --- */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+/* --- 접근성: 본문 바로가기 링크 (평소엔 숨김, 키보드 포커스 시 노출) --- */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 0;
+  background: var(--color-text);
+  color: #fff;
+  padding: var(--space-1) var(--space-2);
+  z-index: 100;
+}
+.skip-link:focus {
+  top: 0;
+}
+
+/* ============================================
+   3. 공통 레이아웃 유틸리티
+   ============================================ */
+.container {
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 0 var(--space-3);
+}
+
+/* ============================================
+   4. 버튼
+   ============================================ */
+.btn {
+  display: inline-block;
+  padding: var(--space-1) var(--space-3);
+  border-radius: var(--radius-sm);
+  font-weight: 500;
+  font-size: 1rem;
+  transition: opacity 0.2s ease, transform 0.1s ease;
+}
+
+.btn-primary {
+  color: #fff;
+  background: linear-gradient(90deg, var(--brand-primary-from), var(--brand-primary-to));
+}
+.btn-primary:hover {
+  background: linear-gradient(90deg, var(--brand-hover-from), var(--brand-hover-to));
+}
+.btn-primary:active {
+  background: linear-gradient(90deg, var(--brand-pressed-from), var(--brand-pressed-to));
+  transform: scale(0.98);
+}
+
+.btn-ghost {
+  color: var(--color-text);
+  background: transparent;
+  border: 1px solid var(--color-border);
+}
+.btn-ghost:hover {
+  border-color: var(--brand-primary-from);
+}
+
+.btn-lg {
+  padding: var(--space-2) var(--space-4);
+  font-size: 1.0625rem;
+}
+
+/* ============================================
+   5. 헤더
+   ============================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  background: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+  z-index: 50;
+}
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: var(--space-2);
+  padding-bottom: var(--space-2);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-weight: 700;
+  font-size: 1.125rem;
+}
+
+.brand-mark {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-sm);
+  color: #fff;
+  background: linear-gradient(135deg, var(--brand-primary-from), var(--brand-primary-to));
+}
+
+/* 데스크탑 네비게이션 */
+.primary-navigation {
+  display: flex;
+  gap: var(--space-3);
+}
+
+/* 모바일 메뉴 버튼: 기본은 숨김, 좁은 화면에서만 노출 (반응형 단계에서 다룸) */
+.menu-button {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 1.25rem;
+  cursor: pointer;
+}
+
+/* ============================================
+   6. 히어로 섹션
+   ============================================ */
+.hero {
+  padding: var(--space-8) 0;
+}
+
+.hero-inner {
+  display: flex;
+  align-items: center;
+  gap: var(--space-6);
+}
+
+.hero-text {
+  flex: 1;
+}
+
+.eyebrow {
+  color: var(--brand-primary-from);
+  font-weight: 600;
+  font-size: 0.875rem;
+  margin-bottom: var(--space-1);
+}
+
+.hero-text h1 {
+  font-size: 3rem;      /* Display: 48/60 */
+  line-height: 1.25;
+  margin-bottom: var(--space-3);
+}
+
+.hero-subtext {
+  font-size: 1.125rem;
+  margin-bottom: var(--space-4);
+}
+
+.hero-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.hero-visual {
+  flex: 1;
+}
+
+.hero-visual img {
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-card);
+}
+
+/* ============================================
+   7. 문제 섹션
+   ============================================ */
+.problem {
+  padding: var(--space-8) 0;
+}
+
+.problem h2 {
+  text-align: center;
+  margin-bottom: var(--space-6);
+}
+
+.problem-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-4);
+}
+
+.problem-list li {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  padding: var(--space-3);
+}
+
+.problem-list h3 {
+  margin-bottom: var(--space-1);
+}
+
+/* ============================================
+   8. 기능 섹션
+   ============================================ */
+.features {
+  padding: var(--space-8) 0;
+}
+
+.features h2 {
+  text-align: center;
+}
+
+.section-subtext {
+  text-align: center;
+  max-width: 560px;
+  margin: var(--space-1) auto var(--space-6);
+}
+
+.feature-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+}
+
+.feature-card {
+  background: var(--color-surface);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-4);
+}
+
+.feature-card h3 {
+  margin-bottom: var(--space-1);
+}
+
+/* ============================================
+   9. CTA 섹션
+   ============================================ */
+.cta-section {
+  padding: var(--space-8) 0;
+  background: linear-gradient(135deg, var(--brand-primary-from), var(--brand-primary-to));
+}
+
+.cta-inner {
+  text-align: center;
+}
+
+.cta-section h2 {
+  color: #fff;
+  margin-bottom: var(--space-1);
+}
+
+.cta-section p {
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: var(--space-4);
+}
+
+.cta-section .btn-primary {
+  background: #fff;
+  color: var(--brand-primary-from);
+}
+.cta-section .btn-primary:hover {
+  background: #f3f3f3;
+}
+
+/* ============================================
+   10. 푸터
+   ============================================ */
+.site-footer {
+  padding: var(--space-4) 0;
+  border-top: 1px solid var(--color-border);
+}
+
+.footer-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--color-subtext);
+  font-size: 0.875rem;
+}
+
+.footer-inner nav {
+  display: flex;
+  gap: var(--space-3);
+}
