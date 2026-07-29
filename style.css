@@ -203,13 +203,18 @@ p  { font-size: 1rem;    line-height: 1.5;  color: var(--color-subtext); } /* 16
   gap: var(--space-3);
 }
 
-/* 모바일 메뉴 버튼: 기본은 숨김, 좁은 화면에서만 노출 (반응형 단계에서 다룸) */
+/* 모바일 메뉴 버튼: 기본은 숨김, 좁은 화면에서만 노출 (아래 반응형 섹션에서 다룸) */
 .menu-button {
   display: none;
   background: none;
   border: none;
   font-size: 1.25rem;
   cursor: pointer;
+}
+
+/* 스크롤 시 헤더에 그림자 추가 (JS로 is-scrolled 클래스 토글) */
+.site-header.is-scrolled {
+  box-shadow: 0 2px 12px rgba(17, 24, 39, 0.08);
 }
 
 /* ============================================
@@ -417,4 +422,106 @@ p  { font-size: 1rem;    line-height: 1.5;  color: var(--color-subtext); } /* 16
 .footer-inner nav {
   display: flex;
   gap: var(--space-3);
+}
+
+/* ============================================
+   11. 스크롤 인터랙션 (JS와 연동되는 애니메이션)
+   ============================================ */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* JS가 로드되지 않은 경우를 대비한 안전장치: 기본은 보이는 상태 유지 */
+.no-js .reveal {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============================================
+   12. 반응형 레이아웃
+   ============================================ */
+@media (max-width: 900px) {
+  .feature-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-inner {
+    flex-direction: column;
+  }
+
+  .hero-text h1 {
+    font-size: 2.25rem;
+  }
+
+  .hero-actions {
+    flex-wrap: wrap;
+  }
+
+  /* 모바일 드롭다운 메뉴 */
+  .primary-navigation {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    flex-direction: column;
+    gap: var(--space-2);
+    background: var(--color-surface);
+    border-bottom: 1px solid var(--color-border);
+    padding: var(--space-3);
+  }
+
+  .primary-navigation.is-open {
+    display: flex;
+  }
+
+  .menu-button {
+    display: block;
+  }
+
+  .header-cta {
+    display: none;
+  }
+
+  .problem-list {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .steps-list li {
+    align-items: flex-start;
+  }
+
+  .footer-inner {
+    flex-direction: column;
+    gap: var(--space-2);
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-text h1 {
+    font-size: 1.875rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+    text-align: center;
+  }
 }
