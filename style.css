@@ -271,6 +271,8 @@ p  { font-size: 1rem;    line-height: 1.5;  color: var(--color-subtext); } /* 16
    ============================================ */
 .problem {
   padding: var(--space-8) 0;
+  background: var(--color-surface);
+  border-top: 1px dashed var(--color-border);
 }
 
 .problem h2 {
@@ -296,10 +298,32 @@ p  { font-size: 1rem;    line-height: 1.5;  color: var(--color-subtext); } /* 16
 }
 
 /* ============================================
+   7-1. 카드 아이콘 (문제 섹션 + 기능 섹션 공용)
+   ============================================ */
+.card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-sm);
+  color: var(--brand-primary-from);
+  background: linear-gradient(135deg, rgba(123, 92, 235, 0.12), rgba(91, 164, 235, 0.12));
+  margin-bottom: var(--space-2);
+}
+
+.card-icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* ============================================
    8. 기능 섹션
    ============================================ */
 .features {
   padding: var(--space-8) 0;
+  background: var(--color-bg);
+  border-top: 1px dashed var(--color-border);
 }
 
 .features h2 {
@@ -335,6 +359,7 @@ p  { font-size: 1rem;    line-height: 1.5;  color: var(--color-subtext); } /* 16
 .how-it-works {
   padding: var(--space-8) 0;
   background: var(--color-surface);
+  border-top: 1px dashed var(--color-border);
 }
 
 .how-it-works h2 {
@@ -344,16 +369,28 @@ p  { font-size: 1rem;    line-height: 1.5;  color: var(--color-subtext); } /* 16
 .steps-list {
   list-style: none;
   display: flex;
-  flex-direction: column;
-  gap: var(--space-4);
-  max-width: 720px;
+  gap: var(--space-3);
+  max-width: 780px;
   margin: var(--space-6) auto 0;
 }
 
 .steps-list li {
+  position: relative;
+  flex: 1;
   display: flex;
-  gap: var(--space-3);
-  align-items: flex-start;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: var(--space-1);
+}
+
+.steps-list li:not(:last-child)::after {
+  content: '→';
+  position: absolute;
+  top: 20px;
+  right: -22px;
+  color: var(--color-border);
+  font-size: 1.25rem;
 }
 
 .step-number {
@@ -370,7 +407,11 @@ p  { font-size: 1rem;    line-height: 1.5;  color: var(--color-subtext); } /* 16
 }
 
 .steps-list h3 {
-  margin-bottom: var(--space-1);
+  font-size: 1.125rem;
+}
+
+.steps-list p {
+  font-size: 0.9375rem;
 }
 
 /* ============================================
@@ -500,8 +541,14 @@ p  { font-size: 1rem;    line-height: 1.5;  color: var(--color-subtext); } /* 16
     grid-template-columns: 1fr;
   }
 
-  .steps-list li {
-    align-items: flex-start;
+  .steps-list {
+    flex-direction: column;
+  }
+
+  .steps-list li:not(:last-child)::after {
+    content: '↓';
+    position: static;
+    margin-top: var(--space-1);
   }
 
   .footer-inner {
